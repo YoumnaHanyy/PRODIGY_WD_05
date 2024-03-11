@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0em;
+    padding: 0em;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+header{
+    width: 100%;
+    position: fixed;
+    z-index:999 ;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 10px 50px;
+   padding-top: 30px;
+}
+.logo{
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    text-decoration: none;
+font-weight: 200;
+font-size: 1.7em;
+}
+.navigation a{
+    color: black;
+    font-weight: 400;
+    text-decoration: none;
+margin-right: 30px;
+
+}
+
+.navigation a:hover{
+ font-size: 1em;
+  transition: transform 0.3s, text-decoration 0.3s; 
+  display: inline-block;
+  transform: scale(1.1);
+}
+.navigation a:hover::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 2px; 
+    background-color: darkblue; 
+    position:absolute;
+   bottom: -2px;
+left:50%;
+transform: translateX(-50%);
+  }
+ 
+.text{
+    
+    background-color: rgba(236, 236, 236, 0.3); 
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    resize: none;
+    color: white;
+    margin-left: 75px;
+    margin-top: 20px;
+    width: 70%;
+    height: 50px;
+    justify-content: center;
+   
+}
+
+
+.text::placeholder {
+
+    color: white; 
+    padding-left: 5px;
+  }
+  .text:focus {
+    background-color: rgba(255, 255, 255, 0.725); 
+    border: none;
+  }
+.main{
+    align-items: center;
+    justify-content: space-between;
+    justify-content: center;
+    width:55%;
+    display: flex;
+    background: url(https://images4.alphacoders.com/703/703305.jpg)no-repeat;
+
+    background-size: cover;
+background-position: center center;
+background-size: 100% 100%; 
+    border-radius: 3em;
+    
+    min-height: 100vh;
+ 
+    
+}
+.main h2{
+    display: flex;
+    letter-spacing:2px;
+    color: white;
+    font-weight: 300;
+   margin-left: 20px;
+   margin-bottom: 30px;
+   width: 90;
+   font-size: 1.8em;
+   font-weight: bold;
+   font-family: "Marcellus", serif;
+}
+
+
+.b {
+    background-color: transparent;
+    border: transparent;
+    margin-left: -120px;
+    margin-top: 80px;
+    color: white;
+}
+.ver{
+
+    transform: rotate(90deg);
+ 
+  width: 130px;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  margin-left: 110px;
+  margin-top:-40px ;
+}
+.whether {
+    align-items: center;
+    justify-content: space-between;
+    width:100%;
+    display: flex;
+    align-items: center;
+    margin-left: 800px;
+    margin-top:40px;
+    width: 90; 
+}
+.whether h2{
+    display: flex;
+    letter-spacing:2px;
+    color: black;
+    font-weight: 1300;
+   margin-left: -25px;
+   font-size: 2em;
+  margin-top: -600px;
+   width: 90; 
+   font-family: "Playfair Display", serif;
+   font-optical-sizing: auto;
+   
+}
+
+.card{
+    background-color: #fff;
+    width: 27em;
+    height:12em;
+    box-shadow: 0 5px 25px rgba(1 1 1/15%);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    transition: 0.7s ease;
+}
+
+.card:hover{
+  transform: scale(1.1);
+}
+
+.icon{
+    color: blue;
+    font-size: 8em;
+    text-align: center;
+}
+.info{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.info p{
+    font-family: "EB Garamond", serif;
+   margin-left: 200px;
+   margin-bottom: 10px; 
+ font-size: 1.1em;
+}
+.wh{
+    font-weight: 600;
+    font-size: 1.1em;
+    font-family: "EB Garamond", serif;
+    justify-content: space-between;
+}
+.arrow {
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.cards {
+    display: flex;
+    overflow-x: hidden;
+    transition: transform 0.3s ease;
+}
+
+.cardd {
+    flex-shrink: 0; 
+}
+.whether h3{
+    display: flex;
+    letter-spacing:2px;
+    color: black;
+    font-weight: 1300;
+   margin-left: -25px;
+   font-size: 2em;
+  margin-top: 20px;
+   width: 90; 
+   font-family: "Playfair Display", serif;
+   font-optical-sizing: auto;
+  
+}
+.whether-info p{
+    font-family: "EB Garamond", serif;
+    font-size: 1.2em;
+    display: flex;
+}
+.whether-info  {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+   margin-top: -65px;
+   
+}
+.whh{
+    font-family: "EB Garamond", serif;
+    font-weight: 800;
+    font-size: 1.6;
+}
+
+.weather-icon{
+    width: 100px; 
+    height: 100px; 
+    margin-bottom: -100px;
+}
+
+.cardd{
+    background-color: #fff;
+    width: 14em;
+    height:15em;
+    box-shadow: 0 5px 25px rgba(1 1 1/15%);
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    transition: 0.7s ease;
+}
+.whether-info1 p{
+    margin-right: 100px;
+
+}
+.cardd:hover{
+    transform: scale(1.1);
+  }
+  .weather-iconn{
+    margin-right: 40px;
+   
+  }
+.cards{
+    
+  display: flex;
+  flex-direction: row;
+}
+ .box{
+    height: 2.8em;
+    width: 10em;
+    color: white;
+    background-color: black;
+    opacity: 40%;
+    border-radius: 0.5em;
+    margin-top: -610px;
+    margin-left: 560px;
+    padding-left: 1em;
+    padding-top: 0.6em;
+    font-family:"EB Garamond", serif ;
+ }
+ 
+ 
+ .box1{
+    color: white;
+    padding-left: 0.6em;
+    font-family: "EB Garamond", serif;
+    font-size: 1.3em;
+    font-weight: 700;
+ }
+ .whether-info1 p{
+    font-family: "EB Garamond", serif;
+    font-size: 1.2em;
+ }
+
+ .wh1{
+    font-family: "EB Garamond", serif;
+    font-weight: 700;
+    display: flex;
+ }
+ .date1{
+    font-family: "EB Garamond", serif;
+    font-weight: 700;
+ }
+ .cancel {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: black; /* Adjust the color as needed */
+    z-index: 1; /* Ensure the cancel button is above the cards */
+    margin-top: 30px;
+}
+ 

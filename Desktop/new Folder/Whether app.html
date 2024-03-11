@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="Whetherstyle.css">
+    <style>
+        img:not([src]) {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="#">forecast</a>
+        <nav class="navigation">
+            <a href="#" onclick="toggleWhether()">Whether</a>
+            <a href="#Alerts">Alerts</a>
+            <a href="Map">Map</a>
+            <a href="#Satellite">Satellite</a>
+            <a href="#Satellite">News</a>
+        </nav>
+    </header>
+
+    <section class="main">
+        <div>
+            <h2 class="head">The Only Whether Forecast You Need</h2>
+            <textarea id="getvalue" class="text" placeholder="Enter your location"></textarea>
+        </div>
+        <div>
+            <button class="b" onclick="getWeather(); getlocation();"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        
+    </section>
+    
+    <section id="whether" class="whether" style="display: none;">
+        <div>
+            <h2>Today</h2>
+
+            <div class="card">
+                <div class="info">
+                    <p>Humidity: <span class="wh" id="humidity"></span></p>
+                    <p>UV index: <span class="wh" id="uvIndex"></span></p>
+                    <p>Cloud Cover: <span class="wh" id="cloudCover"></span></p>
+                    <hr class="ver">
+                </div>
+                 
+                <div id="whether-info" class="whether-info">
+                    <p>Temperature: <span class="whh" id="temperature"></span></p>
+                </div>
+                <div class="weather-icon">
+                    <img height="150px" width="150px" alt="Weather Icon" id="weatherIcon">
+                </div>
+            </div>
+        </div>
+
+
+
+        <div>
+            <h3>Daily</h3>
+            <div class="cards">
+                <button class="arrow" onclick="moveCards('right')">&#8594;</button>
+                <button class="cancel" onclick="cancelMove()">&#10005;</button>
+                <div class="cardd">
+                    <div id="whether-info1" class="whether-info1">
+                        <p>Temperature: <span class="wh1" id="temperature1"></span></p>
+                        <p>Date: <span class="date1" id="Date1"></span></p>
+                    </div>
+                    <div class="weather-iconn">
+                        <img height="150px" width="150px" alt="Weather Icon"id="weatherIcon1">
+                    </div>
+                </div>
+
+                <div class="cardd">
+                    <div id="whether-info2" class="whether-info1">
+                        <p>Temperature: <span class="wh1" id="temperature2"></span></p>
+                        <p>Date: <span class="date1" id="Date2"></span></p>
+                    </div>
+                    <div class="weather-iconn"><img  height="150px" width="150px" alt="Weather Icon"
+                            id="weatherIcon2"></div>
+                </div>
+
+                <div class="cardd">
+                    <div id="whether-info3" class="whether-info1">
+                        <p>Temperature: <span class="wh1" id="temperature3"></span></p>
+                        <p>Date: <span class="date1" id="Date3"></span></p>
+                    </div>
+                    <div class="weather-iconn"><img height="150px" width="150px" alt="Weather Icon"
+                            id="weatherIcon3"></div>
+                </div>
+
+                <div class="cardd">
+                    <div id="whether-info4" class="whether-info1">
+                        <p>Temperature: <span class="wh1" id="temperature4"></span></p>
+                        <p>Date: <span class="date1" id="Date4"></span></p>
+                    </div>
+                    <div class="weather-iconn"><img height="150px" width="150px" alt="Weather Icon"
+                            id="weatherIcon4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <script>
+        function getlocation(){
+            const loc = document.getElementById('box');
+    const boxx = document.getElementById('getvalue').value;
+    loc.textContent = `${boxx}`;
+        }
+        function toggleWhether() {
+            var whetherSection = document.getElementById("whether");
+            whetherSection.style.display = (whetherSection.style.display === "none") ? "block" : "none";
+        }
+
+        function getWeather() {
+            const city = document.getElementById('getvalue').value;
+            const apiKey = '5029c60422f4a4b0b15797d26cea6419'; 
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+            const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+
+            const weatherIconElement = document.getElementById('weatherIcon');
+
+            
+            weatherIconElement.style.display = 'none';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                   
+                    console.log('API Response:', data);
+
+                    const temperatureElement = document.getElementById('temperature');
+                    const humidityElement = document.getElementById('humidity');
+                    const uvIndexElement = document.getElementById('uvIndex');
+                    const cloudCoverElement = document.getElementById('cloudCover');
+
+                    const kelvinTemperature = data.main.temp;
+                    const humidity = data.main.humidity;
+                    const uvIndex = data.uvi;
+                    const cloudCover = data.clouds.all;
+                    const weatherIcon = data.weather[0].icon;
+
+                    
+                    const temperatureCelsius = kelvinTemperature - 273.15;
+
+                    temperatureElement.textContent = `${temperatureCelsius.toFixed(2)}°C`;
+                    humidityElement.textContent = `${humidity}%`;
+                    uvIndexElement.textContent = `${uvIndex}`;
+                    cloudCoverElement.textContent = `${cloudCover}%`;
+
+                    // Set the weather icon
+                    weatherIconElement.src = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+                    weatherIconElement.alt = 'Weather Icon';
+                    weatherIconElement.style.display = 'inline';
+                })
+
+            fetch(forecastUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    
+                    console.log('Forecast Data:', data);
+
+                   
+                    const dailyForecast = data.list.filter(entry => entry.dt_txt.includes('12:00:00'));
+
+                    
+                    dailyForecast.forEach((entry, index) => {
+                        const forecastTemperature = entry.main.temp;
+                        const forecastWeatherIcon = entry.weather[0].icon; 
+
+                        
+                        const forecastTemperatureCelsius = forecastTemperature - 273.15;
+
+                       
+                        const temperatureElement = document.getElementById(`temperature${index + 1}`);
+                        const weatherIconElement = document.getElementById(`weatherIcon${index + 1}`);
+                        const DateElement=document.getElementById(`Date${index+1}`);
+
+                        temperatureElement.textContent = `${forecastTemperatureCelsius.toFixed(2)}°C`;
+                       DateElement.textContent=` ${new Date(entry.dt * 1000).toLocaleDateString()}`
+                        weatherIconElement.src = `http://openweathermap.org/img/w/${forecastWeatherIcon}.png`;
+                        weatherIconElement.alt = 'Weather Icon';
+                       
+                    });
+                })
+               
+        }
+
+
+        let currentIndex = 0;
+
+function moveCards(direction) {
+    const cardContainer = document.querySelector('.cards');
+    const cardWidth = document.querySelector('.cardd').offsetWidth;
+    const totalCards = document.querySelectorAll('.cardd').length;
+
+    if (direction === 'right') {
+        currentIndex = (currentIndex + 1) % totalCards;
+    } else if (direction === 'left') {
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+    }
+
+    const newPosition = -currentIndex * cardWidth;
+    cardContainer.style.transform = `translateX(${newPosition}px)`;
+}
+
+function cancelMove() {
+    const cardContainer = document.querySelector('.cards');
+    cardContainer.style.transform = 'translateX(0)';
+    currentIndex = 0; // Reset the current index
+}
+    </script>
+</body>
+
+</html>
